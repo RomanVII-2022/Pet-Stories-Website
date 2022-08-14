@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %} Pet World {% endblock %}
+
+{% block content %}
+<br/>
+<div class="container">
+    <h4>Contact Us:</h4>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="card text-bg-light mb-5" style="max-width: 900px;">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-md-5">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">First Name:</label>
+                            <input type="text" class="form-control" name="first_name" id="exampleFormControlInput1">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Last Name:</label>
+                            <input type="text" class="form-control" name="last_name" id="exampleFormControlInput1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Email address:</label>
+                    <input type="email" class="form-control" name="email" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Message:</label>
+                    <textarea class="form-control" name="message" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Send Message">
+        </div>
+    </form>
+</div>
+<br/>
+<div class="container">
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.0763658503215!2d37.00963761573363!3d-1.1049851335439334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f47a1767c7ae7%3A0x7590247d78ab8fc6!2sJuja%20Square!5e0!3m2!1sen!2ske!4v1660467858747!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="col-md-8">
+          </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

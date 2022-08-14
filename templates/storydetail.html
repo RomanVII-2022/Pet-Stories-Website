@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Pet World {% endblock %}
+
+{% block content %}
+<br/>
+
+<div class="container">
+    <div class="card" style="width: 40rem;">
+        {% if story.story_image %}
+        <img src="{{story.story_image.url}}" class="card-img-top" width="200" height="300" alt="...">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{story.title}}</h5>
+          <p class="card-text">{{story.body|safe}}</p>
+          <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+        </div>
+      </div>
+</div>
+<br/>
+
+
+{% endblock %}

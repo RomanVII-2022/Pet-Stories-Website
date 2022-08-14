@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %} Pet World {% endblock %}
+
+{% block content %}
+<br/>
+{% for story in stories %}
+<div class="container">
+    <div class="card text-bg-light mb-3" style="max-width: 900px;">
+        <div class="row g-0">
+        <div class="col-md-4">
+            {% if story.story_image %}
+            <img src="{{story.story_image.url}}" class="img-fluid rounded-start" alt="...">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'storydetail' story.id %}">{{story.title}}</a></h5>
+            <p class="card-text">{{story.body|truncatewords:40|safe}}</p>
+            {% if user.is_authenticated %}
+            {% if user == story.author %}
+            <a class="card-text" href="{% url 'editstory' story.id %}">Edit</a> - <a class="card-text" href="{% url 'deletestory' story.id %}">Delete</a>
+            {% endif %}
+            {% endif %}
+            <p class="card-text"><small class="text-muted">By: {{story.author.first_name}} {{story.author.last_name}} on {{story.created_at}}</small></p>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<div class="container">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if stories.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1"> &laquo First</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{stories.previous_page_number}}">Previous</a></li>
+            {% endif %}
+            
+            <li class="page-item disabled"><a class="page-link" href="">page {{stories.number}} of {{stories.paginator.num_pages}}</a></li>
+            
+            {% if stories.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{stories.next_page_number}}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{stories.paginator.num_pages}}">Last &raquo</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
+{% endblock %}

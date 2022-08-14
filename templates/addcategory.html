@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %} Pet World {% endblock %}
+
+{% block content %}
+<br/>
+
+<div class="container">
+    <div class="form-control text-bg-light">
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="btn btn-secondary" type="submit" value="Add Category">
+        </form>
+    </div>
+</div>
+<br/>
+
+
+{% endblock %}

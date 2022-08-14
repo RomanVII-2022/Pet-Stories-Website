@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %} Pet World {% endblock %}
+
+{% block content %}
+<br/>
+{% if user.is_authenticated %}
+{% if user == story.author %}
+
+<div class="container">
+    <h4>Are you sure you want to delete this story? </h4>
+    <div class="card text-bg-light mb-3" style="max-width: 900px;">
+        <div class="row g-0">
+        <div class="col-md-4">
+            {% if story.story_image %}
+            <img src="{{story.story_image.url}}" class="img-fluid rounded-start" alt="...">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'storydetail' story.id %}">{{story.title}}</a></h5>
+            <p class="card-text">{{story.body|truncatewords:40|safe}}</p>
+            <a class="card-text" href="{% url 'editstory' story.id %}">Edit</a> - <a class="card-text" href="">Delete</a>
+            <p class="card-text"><small class="text-muted">By: {{story.author.first_name}} {{story.author.last_name}} on {{story.created_at}}</small></p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <br/>
+    <form method="POST">
+        {% csrf_token %}
+        <input class="btn btn-secondary" type="submit" value="Delete">
+    </form>
+</div>
+{% endif %}
+{% endif %}
+<br/><br/><br/><br/><br/><br/>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %} Pet World {% endblock %}
+
+{% block content %}
+<br/>
+{% if user.is_authenticated %}
+{% if user == story.author %}
+<div class="container">
+    <div class="form-control text-bg-light">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.media}}
+            {{form.as_p}}
+            <input class="btn btn-secondary" type="submit" value="Update Story">
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+<br/>
+
+
+{% endblock %}
